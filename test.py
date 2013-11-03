@@ -29,6 +29,9 @@ class LxmlTestCase(unittest.TestCase):
     def test_text(self):
         ul = self.doc.xpath('//ul')[0]
         self.assertEquals(ul.text, '\n')
+
+    def test_tail(self):
+        ul = self.doc.xpath('//ul')[0]
         self.assertEquals(ul.tail, '\n')
 
 
