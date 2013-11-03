@@ -21,7 +21,7 @@ class LxmlTestCase(unittest.TestCase):
 </ul>
 </html>''')
 
-        self.assertEquals(doc.xpath('id("main")')[0].text_content().strip(), '''1. AAA
+        self.assertEquals(doc.xpath('//ul')[0].text_content().strip(), '''1. AAA
 2. BBB
 3. CCC
 3-1. DDD
