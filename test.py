@@ -11,16 +11,21 @@ class LxmlTestCase(unittest.TestCase):
 
         doc = lxml.html.fromstring('''
 <html>
-<body>B
-<div>
-<span>A</span>
-</div>
-</body>
+<ul id="main">
+<li>1. AAA</li>
+<li>2. BBB</li>
+<li>3. CCC<ul>
+<li>3-1. DDD</li>
+<li>3-2. EEE</li>
+</ul></li>
+</ul>
 </html>''')
 
-        self.assertEquals(doc.xpath('//body')[0].text_content().strip(), '''B
-
-A''')
+        self.assertEquals(doc.xpath('id("main")')[0].text_content().strip(), '''1. AAA
+2. BBB
+3. CCC
+3-1. DDD
+3-2. EEE''')
 
 
 if __name__ == '__main__':
