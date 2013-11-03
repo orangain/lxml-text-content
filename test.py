@@ -10,27 +10,26 @@ class LxmlTestCase(unittest.TestCase):
     def setUp(self):
         self.doc = lxml.html.fromstring('''
 <html>
-<ul id="main">
-<li>1. AAA</li>
-<li>2. BBB</li>
-<li>3. CCC<ul>
-<li>3-1. DDD</li>
-<li>3-2. EEE</li>
-</ul></li>
+<ul>
+<li>1st</li>
+<li>2nd</li>
 </ul>
 </html>''')
 
     def test_text_content(self):
-        self.assertEquals(self.doc.xpath('//ul[@id="main"]')[0].text_content().strip(), '''1. AAA
-2. BBB
-3. CCC
-3-1. DDD
-3-2. EEE''')
+        ul = self.doc.xpath('//ul')[0]
+        self.assertEquals(ul.text_content(), '\n1st\n2nd\n')
 
     def test_to_string(self):
+        ul = self.doc.xpath('//ul')[0]
         self.assertEquals(
-            lxml.html.tostring(self.doc.xpath('//ul[@id="main"]//ul')[0]),
-            '<ul>\n<li>3-1. DDD</li>\n<li>3-2. EEE</li>\n</ul>')
+            lxml.html.tostring(ul),
+            '<ul>\n<li>1st</li>\n<li>2nd</li>\n</ul>\n')
+
+    def test_text(self):
+        ul = self.doc.xpath('//ul')[0]
+        self.assertEquals(ul.text, '\n')
+        self.assertEquals(ul.tail, '\n')
 
 
 if __name__ == '__main__':
