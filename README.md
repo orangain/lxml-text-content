@@ -5,7 +5,6 @@ Usage
 -----
 
 ```
-./run.sh quantal
-./run.sh raring
-./run.sh saucy
+./run.sh 2.8.0
+./run.sh 2.9.0
 ```
